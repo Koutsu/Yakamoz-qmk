@@ -55,42 +55,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_CAPS, KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC, KC_SCRL, KC_MS_BTN2, KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
 ),
 
-/* Colemak
- * ,-----------------------------------------.             ,-----------------------------------------.
- * | Tab  |   Q  |   W  |   F  |   P  |   G  |             |   J  |   L  |   U  |   Y  |   ;  | Bksp |
- * |------+------+------+------+------+------|             |------+------+------+------+------+------|
- * | Esc  |   A  |   R  |   S  |   T  |   D  |             |   H  |   N  |   E  |   I  |   O  |  '   |
- * |------+------+------+------+------+------|             |------+------+------+------+------+------|
- * | Shift|   Z  |   X  |   C  |   V  |   B  |             |   K  |   M  |   ,  |   .  |   /  |Enter |
- * |------+------+------+------+------+------+-------------+------+------+------+------+------+------|
- * | Caps | Ctrl | Alt  | GUI  |Lower |Space |Scroll|RgtClk|Space |Raise | Left | Down |  Up  |Right |
- * `-------------------------------------------------------------------------------------------------'
- */
-[_COLEMAK] = LAYOUT_yakamoz(
-    KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,                        KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSPC,
-    KC_ESC,  KC_A,    KC_R,    KC_S,    KC_T,    KC_D,                        KC_H,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT,
-    KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                        KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT ,
-    KC_CAPS, KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC, KC_SCRL, KC_MS_BTN2, KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
-),
-
-/* Dvorak
- * ,-----------------------------------------.             ,-----------------------------------------.
- * | Tab  |   '  |   ,  |   .  |   P  |   Y  |             |   F  |   G  |   C  |   R  |   L  | Bksp |
- * |------+------+------+------+------+------|             |------+------+------+------+------+------|
- * | Esc  |   A  |   O  |   E  |   U  |   I  |             |   D  |   H  |   T  |   N  |   S  |  /   |
- * |------+------+------+------+------+------|             |------+------+------+------+------+------|
- * | Shift|   ;  |   Q  |   J  |   K  |   X  |             |   B  |   M  |   W  |   V  |   Z  |Enter |
- * |------+------+------+------+------+------+-------------+------+------+------+------+------+------|
- * | Caps | Ctrl | Alt  | GUI  |Lower |Space |Scroll|RgtClk|Space |Raise | Left | Down |  Up  |Right |
- * `-------------------------------------------------------------------------------------------------'
- */
-[_DVORAK] = LAYOUT_yakamoz(
-    KC_TAB,  KC_QUOT, KC_COMM, KC_DOT,  KC_P,    KC_Y,                        KC_F,    KC_G,    KC_C,    KC_R,    KC_L,    KC_BSPC,
-    KC_ESC,  KC_A,    KC_O,    KC_E,    KC_U,    KC_I,                        KC_D,    KC_H,    KC_T,    KC_N,    KC_S,    KC_SLSH,
-    KC_LSFT, KC_SCLN, KC_Q,    KC_J,    KC_K,    KC_X,                        KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,    KC_ENT ,
-    KC_CAPS, KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC, KC_SCRL, KC_MS_BTN2, KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
-),
-
 /* Lower
  * ,-----------------------------------------.             ,-----------------------------------------.
  * |   ~  |   !  |   @  |   #  |   $  |   %  |             |   ^  |   &  |   *  |   (  |   )  |  Del |
@@ -152,32 +116,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 layer_state_t layer_state_set_user(layer_state_t state) {
   return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
-    case QWERTY:
-      if (record->event.pressed) {
-        print("mode just switched to qwerty and this is a huge string\n");
-        set_single_persistent_default_layer(_QWERTY);
-      }
-      return false;
-      break;
-    case COLEMAK:
-      if (record->event.pressed) {
-        set_single_persistent_default_layer(_COLEMAK);
-      }
-      return false;
-      break;
-    case DVORAK:
-      if (record->event.pressed) {
-        set_single_persistent_default_layer(_DVORAK);
-      }
-      return false;
-      break;
-  }
-  return true;
-}
-
 
 
 
